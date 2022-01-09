@@ -18,10 +18,9 @@
     <div>
         Список сообщений
     </div>
-    <form method="post" action="filter">
-        <input type="text" name="tag">
+    <form method="get" action="main">
+        <input id="filterInput" type="text" name="filter" value="${filter!""}"/>
         <button type="submit">Найти</button>
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     </form>
     <#list messages as message>
         <div>
@@ -33,4 +32,5 @@
         <#else>
         No messages
     </#list>
+    <script type="text/javascript" src="/util.js"></script>
 </@c.page>
