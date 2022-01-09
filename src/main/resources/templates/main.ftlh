@@ -2,6 +2,9 @@
 
 <@c.page>
     <div>
+        <a href="/user">User list</a>
+    </div>
+    <div>
         <form action="/logout" method="post">
             <input type="submit" value="Sign Out">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
