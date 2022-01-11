@@ -11,8 +11,7 @@ function setCaretAtEnd(elem) {
         oSel.moveStart('character', elemLen);
         oSel.moveEnd('character', 0);
         oSel.select();
-    }
-    else if (elem.selectionStart || elem.selectionStart == '0') {
+    } else if (elem.selectionStart || elem.selectionStart == '0') {
         // Firefox/Chrome
         elem.selectionStart = elemLen;
         elem.selectionEnd = elemLen;
@@ -20,7 +19,7 @@ function setCaretAtEnd(elem) {
     } // if
 }
 
-document.getElementById("filterInput").oninput = function() {
+document.getElementById("filterInput").oninput = function () {
     document.location.href = "/main?filter=" + document.getElementById("filterInput").value;
 };
 

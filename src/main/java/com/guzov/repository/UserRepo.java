@@ -1,4 +1,4 @@
-package com.guzov.repostory;
+package com.guzov.repository;
 
 import com.guzov.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

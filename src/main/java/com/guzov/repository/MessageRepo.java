@@ -1,4 +1,4 @@
-package com.guzov.repostory;
+package com.guzov.repository;
 
 import com.guzov.domain.Message;
 import org.springframework.data.repository.CrudRepository;

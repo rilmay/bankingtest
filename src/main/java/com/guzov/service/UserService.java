@@ -1,6 +1,6 @@
 package com.guzov.service;
 
-import com.guzov.repostory.UserRepo;
+import com.guzov.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

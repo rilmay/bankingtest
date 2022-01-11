@@ -1,14 +1,13 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <div>
-        <a href="/user">User list</a>
-    </div>
-    <div>
-        <form action="/logout" method="post">
-            <input type="submit" value="Sign Out">
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        </form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <form method="get" action="main">
+                <input id="filterInput" type="text" name="filter" value="${filter!""}" placeholder="Search"/>
+                <button class="btn btn-primary ml-2" type="submit">Найти</button>
+            </form>
+        </div>
     </div>
     <div>
         <form method="post" enctype="multipart/form-data">
@@ -22,24 +21,25 @@
     <div>
         Список сообщений
     </div>
-    <form method="get" action="main">
-        <input id="filterInput" type="text" name="filter" value="${filter!""}"/>
-        <button type="submit">Найти</button>
-    </form>
-    <#list messages as message>
-        <div>
-            <b>${message.id}</b>
-            <span>${message.text}</span>
-            <i>${message.tag}</i>
-            <strong>${message.authorUserName}</strong>
-            <div>
+    <div class="card-columns">
+
+        <#list messages as message>
+            <div class="card my-3">
                 <#if message.fileName??>
-                    <img src="/img/${message.fileName}">
+                    <img class="card-img-top" src="/img/${message.fileName}">
                 </#if>
+                <div class="m-2">
+                    <span>${message.text}</span>
+                    <i>${message.tag}</i>
+                </div>
+                <div class="card-footer text-muted">
+                    ${message.authorUserName}
+                </div>
             </div>
-        </div>
         <#else>
-        No messages
-    </#list>
+            No messages
+        </#list>
+    </div>
+
     <script type="text/javascript" src="/js/util.js"></script>
 </@c.page>
