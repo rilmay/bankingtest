@@ -21,6 +21,11 @@
                         <a class="nav-link active" aria-current="page" href="/user">User list</a>
                     </li>
                 </#if>
+                <#if user??>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/user/profile">User profile</a>
+                    </li>
+                </#if>
             </ul>
 
 

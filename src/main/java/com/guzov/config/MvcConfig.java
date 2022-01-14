@@ -6,8 +6,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.io.File;
-
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
     @Value("${upload.path}")
@@ -22,6 +20,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**")
                 .addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/img/**")
-                .addResourceLocations( "file:///" + uploadPath);
+                .addResourceLocations("file:///" + uploadPath);
     }
 }
