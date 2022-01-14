@@ -11,8 +11,14 @@
     </div>
     <div>
         <form method="post" enctype="multipart/form-data">
-            <input type="text" name="text" placeholder="Введитее сообщение">
-            <input type="text" name="tag" placeholder="Тэг">
+            <#if textError??>
+                ${textError}
+            </#if>
+            <input type="text" name="text" value="<#if message??>${message.text!""}</#if>" placeholder="Введитее сообщение">
+            <#if tagError??>
+                ${tagError}
+            </#if>
+            <input type="text" value="<#if message??>${message.tag!""}</#if>"  name="tag" placeholder="Тэг">
             <input type="file" name="file">
             <button type="submit">Добавить</button>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -22,23 +28,24 @@
         Список сообщений
     </div>
     <div class="card-columns">
-
-        <#list messages as message>
-            <div class="card my-3">
-                <#if message.fileName??>
-                    <img class="card-img-top" src="/img/${message.fileName}">
-                </#if>
-                <div class="m-2">
-                    <span>${message.text}</span>
-                    <i>${message.tag}</i>
+        <#if messages??>
+            <#list messages as message>
+                <div class="card my-3">
+                    <#if message.fileName??>
+                        <img class="card-img-top" src="/img/${message.fileName}">
+                    </#if>
+                    <div class="m-2">
+                        <span>${message.text}</span>
+                        <i>${message.tag}</i>
+                    </div>
+                    <div class="card-footer text-muted">
+                        ${message.authorUserName}
+                    </div>
                 </div>
-                <div class="card-footer text-muted">
-                    ${message.authorUserName}
-                </div>
-            </div>
-        <#else>
-            No messages
-        </#list>
+            <#else>
+                No messages
+            </#list>
+        </#if>
     </div>
 
     <script type="text/javascript" src="/js/util.js"></script>

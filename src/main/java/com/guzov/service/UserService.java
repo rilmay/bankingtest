@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,17 +21,24 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private PasswordEncoder passEnc;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username);
+
+        User user = userRepo.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return  user;
     }
 
     public Iterable<User> findAll() {
         return userRepo.findAll();
     }
 
-    public void registerUser(User user, String username, Map<String, String> form) {
+    public void updateUser(User user, String username, Map<String, String> form) {
         user.setUsername(username);
 
         Set<Role> roles = form.keySet()
@@ -39,6 +48,19 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toSet());
         user.setRoles(roles);
         userRepo.save(user);
+    }
+
+    public boolean registerUser(User user) {
+        User userFromDb = userRepo.findByUsername(user.getUsername());
+        if (userFromDb != null) {
+            return false;
+        }
+
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.USER));
+        user.setPassword(passEnc.encode(user.getPassword()));
+        userRepo.save(user);
+        return true;
     }
 
     public void updateProfile(User user, String password) {

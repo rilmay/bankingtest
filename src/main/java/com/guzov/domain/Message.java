@@ -1,6 +1,9 @@
 package com.guzov.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Message {
@@ -8,7 +11,11 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Field cannot be blank")
+    @Length(max = 2048, message = "Message too long (more than 2kB)")
     private String text;
+    @NotBlank(message = "Field cannot be blank")
+    @Length(max = 2048, message = "Message too long (more than 2kB)")
     private String tag;
     private String fileName;
 
