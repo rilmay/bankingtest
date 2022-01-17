@@ -56,4 +56,26 @@ public class UserController {
 
         return "redirect:/user/profile";
     }
+
+
+
+    @PostMapping("subscribe")
+    public String subscribe(
+            @AuthenticationPrincipal User currentUser,
+            @RequestParam User user
+    ) {
+        userService.subscribe(currentUser, user);
+        return "redirect:/user-messages/" + user.getId();
+    }
+
+
+
+    @PostMapping("unsubscribe")
+    public String unsubscribe(
+            @AuthenticationPrincipal User currentUser,
+            @RequestParam User user
+    ) {
+        userService.unsubscribe(currentUser, user);
+        return "redirect:/user-messages/" + user.getId();
+    }
 }
