@@ -2,7 +2,7 @@
 <div>
     Список сообщений
 </div>
-<div class="card-columns">
+<div class="card-columns" id="message-list">
     <#if messages??>
         <#list messages as message>
             <div class="card my-3">

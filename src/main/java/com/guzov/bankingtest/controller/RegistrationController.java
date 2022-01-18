@@ -1,7 +1,7 @@
-package com.guzov.controller;
+package com.guzov.bankingtest.controller;
 
-import com.guzov.domain.User;
-import com.guzov.service.UserService;
+import com.guzov.bankingtest.domain.User;
+import com.guzov.bankingtest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

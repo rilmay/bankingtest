@@ -1,4 +1,4 @@
-package com.guzov;
+package com.guzov.bankingtest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

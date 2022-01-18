@@ -34,9 +34,7 @@
             </ul>
 
 
-            <div class="navbar-text mr-3">
-                ${name}
-            </div>
+            <div class="navbar-text mr-3">${name}</div>
 
             <div>
                 <form action="/logout" method="post">

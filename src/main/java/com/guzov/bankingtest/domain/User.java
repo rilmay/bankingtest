@@ -1,4 +1,4 @@
-package com.guzov.domain;
+package com.guzov.bankingtest.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,25 +32,25 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Message> messages;
 
     @ManyToMany
     @JoinTable(
             name = "user_subscriptions",
-            joinColumns = { @JoinColumn(name = "channel_id")},
-            inverseJoinColumns = { @JoinColumn(name = "subscriber_id")}
+            joinColumns = {@JoinColumn(name = "channel_id")},
+            inverseJoinColumns = {@JoinColumn(name = "subscriber_id")}
     )
     private Set<User> subscribers = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
             name = "user_subscriptions",
-            inverseJoinColumns = { @JoinColumn(name = "channel_id")},
-            joinColumns = { @JoinColumn(name = "subscriber_id")}
+            inverseJoinColumns = {@JoinColumn(name = "channel_id")},
+            joinColumns = {@JoinColumn(name = "subscriber_id")}
     )
     private Set<User> subscriptions = new HashSet<>();
-    
+
     public Set<User> getSubscribers() {
         return subscribers;
     }

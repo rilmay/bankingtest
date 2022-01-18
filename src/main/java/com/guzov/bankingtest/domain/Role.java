@@ -1,4 +1,4 @@
-package com.guzov.domain;
+package com.guzov.bankingtest.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 

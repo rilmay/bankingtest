@@ -1,4 +1,4 @@
-package com.guzov.config;
+package com.guzov.bankingtest.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

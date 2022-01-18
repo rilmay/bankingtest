@@ -1,8 +1,8 @@
-package com.guzov.controller;
+package com.guzov.bankingtest.controller;
 
-import com.guzov.domain.Message;
-import com.guzov.domain.User;
-import com.guzov.repository.MessageRepo;
+import com.guzov.bankingtest.domain.Message;
+import com.guzov.bankingtest.domain.User;
+import com.guzov.bankingtest.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

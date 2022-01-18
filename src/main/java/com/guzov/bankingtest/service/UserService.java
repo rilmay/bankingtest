@@ -1,8 +1,8 @@
-package com.guzov.service;
+package com.guzov.bankingtest.service;
 
-import com.guzov.domain.Role;
-import com.guzov.domain.User;
-import com.guzov.repository.UserRepo;
+import com.guzov.bankingtest.domain.Role;
+import com.guzov.bankingtest.domain.User;
+import com.guzov.bankingtest.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return  user;
+        return user;
     }
 
     public Iterable<User> findAll() {

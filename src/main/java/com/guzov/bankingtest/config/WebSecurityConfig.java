@@ -1,6 +1,6 @@
-package com.guzov.config;
+package com.guzov.bankingtest.config;
 
-import com.guzov.service.UserService;
+import com.guzov.bankingtest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

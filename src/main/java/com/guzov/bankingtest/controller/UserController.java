@@ -1,8 +1,8 @@
-package com.guzov.controller;
+package com.guzov.bankingtest.controller;
 
-import com.guzov.domain.Role;
-import com.guzov.domain.User;
-import com.guzov.service.UserService;
+import com.guzov.bankingtest.domain.Role;
+import com.guzov.bankingtest.domain.User;
+import com.guzov.bankingtest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -58,7 +58,6 @@ public class UserController {
     }
 
 
-
     @PostMapping("subscribe")
     public String subscribe(
             @AuthenticationPrincipal User currentUser,
@@ -67,7 +66,6 @@ public class UserController {
         userService.subscribe(currentUser, user);
         return "redirect:/user-messages/" + user.getId();
     }
-
 
 
     @PostMapping("unsubscribe")

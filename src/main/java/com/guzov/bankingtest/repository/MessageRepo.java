@@ -1,6 +1,6 @@
-package com.guzov.repository;
+package com.guzov.bankingtest.repository;
 
-import com.guzov.domain.Message;
+import com.guzov.bankingtest.domain.Message;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
