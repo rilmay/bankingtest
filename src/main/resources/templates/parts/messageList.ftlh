@@ -1,10 +1,13 @@
 <#include "security.ftlh">
+<#import "pager.ftlh" as p>
+
+<@p.pager url page/>
 <div>
     Список сообщений
 </div>
 <div class="card-columns" id="message-list">
-    <#if messages??>
-        <#list messages as message>
+    <#if page.content??>
+        <#list page.content as message>
             <div class="card my-3">
                 <#if message.fileName??>
                     <img class="card-img-top" src="/img/${message.fileName}">
@@ -27,3 +30,4 @@
         </#list>
     </#if>
 </div>
+<@p.pager url page/>

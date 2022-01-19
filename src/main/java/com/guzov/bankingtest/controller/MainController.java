@@ -5,6 +5,10 @@ import com.guzov.bankingtest.domain.User;
 import com.guzov.bankingtest.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,15 +41,20 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false) String filter, Map<String, Object> model) {
-        Iterable<Message> messages;
+    public String main(
+            @RequestParam(required = false) String filter,
+            Model model,
+            @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        Page<Message> page;
         if (filter == null || filter.isEmpty()) {
-            messages = messageRepo.findAll();
+            page = messageRepo.findAll(pageable);
         } else {
-            messages = messageRepo.findByTag(filter);
+            page = messageRepo.findByTag(filter, pageable);
         }
-        model.put("filter", filter);
-        model.put("messages", messages);
+        model.addAttribute("filter", filter);
+        model.addAttribute("url", "/main");
+        model.addAttribute("page", page);
         return "main";
     }
 
