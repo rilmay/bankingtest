@@ -3,8 +3,13 @@ package com.guzov.bankingtest.controller;
 import com.guzov.bankingtest.domain.Message;
 import com.guzov.bankingtest.domain.User;
 import com.guzov.bankingtest.repository.MessageRepo;
+import com.guzov.bankingtest.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +29,9 @@ public class UserMessagesController {
     @Autowired
     private MessageRepo messageRepo;
 
+    @Autowired
+    private MessageService messageService;
+
     @Value("${upload.path}")
     private String uploadPath;
 
@@ -32,17 +40,19 @@ public class UserMessagesController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user,
             Map<String, Object> model,
-            @RequestParam(required = false) Message message
+            @RequestParam(required = false) Message message,
+            @PageableDefault(sort = {"id"}, direction =Sort.Direction.DESC) Pageable pageable
     ) {
 
-        Set<Message> messages = user.getMessages();
+        Page<Message> messages = messageService.messageListForUser(pageable, user);
 
-        model.put("messages", messages);
+        model.put("page", messages);
         model.put("message", message);
         model.put("userChannel", user);
         model.put("subscriptionsCount", user.getSubscriptions().size());
         model.put("subscribersCount", user.getSubscribers().size());
         model.put("isSubscriber", user.getSubscribers().contains(currentUser));
+        model.put("url", "/user-messages/" + user.getId());
 
         model.put("isCurrentUser", currentUser.equals(user));
         return "userMessages";
