@@ -44,7 +44,8 @@ public class MainController {
     public String main(
             @RequestParam(required = false) String filter,
             Model model,
-            @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable,
+            @AuthenticationPrincipal User currentUser
     ) {
         Page<Message> page;
         if (filter == null || filter.isEmpty()) {

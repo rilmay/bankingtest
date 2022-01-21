@@ -16,13 +16,22 @@
                     <span>${message.text}</span><br/>
                     <i>#${message.tag}</i>
                 </div>
-                <div class="card-footer text-muted">
-                    <a href="/user-messages/${message.author.id}">${message.authorUserName}</a>
-                    <#if user??>
-                        <#if message.author.id == user.id>
-                            <a class="btn btn-primary" href="/user-messages/${message.author.id}?message=${message.id}">Edit</a>
+                <div class="card-footer text-muted container">
+                    <div class="row">
+                        <a class="col align-self-center" href="/user-messages/${message.author.id}">${message.authorUserName}</a>
+                        <a class="col align-self-center" href="">
+                            <#if true>
+                                <i class="fas fa-heart"></i>
+                            <#else>
+                                <i class="far fa-heart"></i>
+                            </#if>
+                        </a>
+                        <#if user??>
+                            <#if message.author.id == user.id>
+                                <a class="col btn btn-primary" href="/user-messages/${message.author.id}?message=${message.id}">Edit</a>
+                            </#if>
                         </#if>
-                    </#if>
+                    </div>
                 </div>
             </div>
         <#else>

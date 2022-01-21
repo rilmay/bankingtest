@@ -12,5 +12,5 @@
     <#include "parts/messageEdit.ftlh" />
     <#include "parts/messageList.ftlh" />
 
-    <script type="text/javascript" src="/js/util.js"></script>
+    <script type="text/javascript" src="/static/util.js"></script>
 </@c.page>
